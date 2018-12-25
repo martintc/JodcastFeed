@@ -2,6 +2,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JCheckBoxMenuItem;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -69,6 +70,9 @@ public class MainView {
 
         JButton syncButton = new JButton("Sync");
         toolPanel.add(syncButton); // add to tool panel
+
+        JButton aboutButton = new JButton("About");
+        toolPanel.add(aboutButton);
 
         // PodcastList panel
         JPanel podcastListPanel = new JPanel();

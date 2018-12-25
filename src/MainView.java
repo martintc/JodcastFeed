@@ -2,6 +2,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JCheckBoxMenuItem;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
@@ -12,6 +13,12 @@ import java.util.ArrayList;
 
 
 public class MainView {
+
+    /*
+     * Instance variable
+     */
+    private ArrayList<JCheckBoxMenuItem> podcastMenu;
+    private ArrayList<Podcast> podcasts;
 
     /*
      * Default constructor
@@ -25,7 +32,15 @@ public class MainView {
      * where main execution of this class takes place
      */
     public void run () {
+        // populatePodcastMenu();
         mainWindow();
+
+    }
+
+    private void populatePodcastMenu () {
+        for (Podcast p : podcasts) {
+            podcastMenu.add(new JCheckBoxMenuItem(p.getPodcastName()));
+        }
 
     }
 
@@ -58,8 +73,12 @@ public class MainView {
         // PodcastList panel
         JPanel podcastListPanel = new JPanel();
         mainPanel.add(podcastListPanel, BorderLayout.CENTER);
+        podcastListPanel.setLayout(new BoxLayout(podcastListPanel, BoxLayout.Y_AXIS));
 
-        
+        podcastListPanel.add(new JCheckBoxMenuItem("Test"));
+        /*for (JCheckBoxMenuItem item : podcastMenu) {
+            podcastListPanel.add(item);
+        }*/
 
         // bottomPanel set-up
         JPanel bottomPanel = new JPanel();

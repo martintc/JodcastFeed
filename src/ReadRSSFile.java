@@ -2,10 +2,10 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class ReadRSSFile extends Scanner {
+public class ReadRSSFile {
 
     public ReadRSSFile (String file) throws FileNotFoundException {
-        super(new File(file));
+        Scanner in = new Scanner(file);
     }
 
 

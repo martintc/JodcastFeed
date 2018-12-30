@@ -52,7 +52,11 @@ public class AddPodcastView extends JFrame implements ActionListener {
     }
 
     public void actionPerformed (ActionEvent e) {
-
+        String action = e.getActionCommand();
+        if (action.equals("Save")) {
+            String name = podcastName.getText();
+            String rss = podcastURLRSS.getText();
+        }
     }
 
 }

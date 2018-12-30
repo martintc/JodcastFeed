@@ -8,19 +8,29 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 
-public class SettingsView extends JFrame {
+public class SettingsView extends JFrame implements ActionListener {
 
     private JPanel mainPanel;
     private JButton saveSettings;
     private JButton exitButton;
+    private JTextField locationTextField;
+    public Configuration config;
+
+    /*
+     * Configuration File information
+     * Podcast Episode Save spot
+     */
 
 
-    public SettingsView () {
+    public SettingsView (Configuration pConfig) {
+
+        config = pConfig;
 
         setVisible(true);
         setTitle("Settings");
-        setSize(300,300);
+        setSize(500,100);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 
@@ -30,17 +40,41 @@ public class SettingsView extends JFrame {
         JLabel headerLabel = new JLabel("Settings Menu");
         mainPanel.add(headerLabel, BorderLayout.NORTH);
 
-        JPanel southPanel = new JPanel();
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new GridLayout(1, 2));
 
+        JLabel saveLocationLabel = new JLabel("Save Location");
+        locationTextField = new JTextField();
+
+        centerPanel.add(saveLocationLabel);
+        centerPanel.add(locationTextField);
+
+        JPanel southPanel = new JPanel();
 
         saveSettings = new JButton("Save");
         southPanel.add(saveSettings, BorderLayout.SOUTH);
+        saveSettings.addActionListener(this);
 
         exitButton = new JButton("Exit");
         southPanel.add(exitButton, BorderLayout.SOUTH);
+        exitButton.addActionListener(this);
 
+        mainPanel.add(centerPanel, BorderLayout.CENTER);
         mainPanel.add(southPanel, BorderLayout.SOUTH);
         add(mainPanel);
+    }
+
+    public void actionPerformed (ActionEvent e) {
+        String action = e.getActionCommand();
+        if (action.equals("Save")) {
+            if (config.loadSaveLocation(locationTextField.getText())) {
+                JOptionPane.showMessageDialog(null, "Saved!");
+            } else {
+                JOptionPane.showMessageDialog(null, "System error!");
+            }
+        } else if (action.equals("Exit")) {
+            // do nothing temporarily
+        }
     }
 
 }

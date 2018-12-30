@@ -1,5 +1,7 @@
 public class Main {
 
+    private Configuration config;
+
     /*
      * Main
      * Creates an object of itself
@@ -15,11 +17,12 @@ public class Main {
      * where execution of the program takes place
      */
     public void run () {
+        config = new Configuration();
         if (!loadConfigs()) {
             System.exit(-1);
         }
 
-        MainView mainView = new MainView();
+        MainView mainView = new MainView(config);
         mainView.run();
     }
 

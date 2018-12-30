@@ -31,11 +31,14 @@ public class MainView {
     private ArrayList<JCheckBoxMenuItem> podcastMenu;
     private ArrayList<Podcast> podcasts;
 
+    private Configuration config;
+
     /*
      * Default constructor
      * Future plans: Load information for podcast into an ArrayList
      */
-    public MainView () {
+    public MainView (Configuration pConfig) {
+        config = pConfig;
 
     }
 
@@ -117,7 +120,8 @@ public class MainView {
         if (action == "About") {
             JOptionPane.showMessageDialog(null, About.getInformation());
         } else if (action == "Settings") {
-            SettingsView settingsView = new SettingsView();
+            SettingsView settingsView = new SettingsView(config);
+            JOptionPane.showMessageDialog(null, config.getSaveLocation());
         }
     }
 

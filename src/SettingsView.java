@@ -77,4 +77,8 @@ public class SettingsView extends JFrame implements ActionListener {
         }
     }
 
+    private void writeToFile() {
+        config.writeConfiguration();
+    }
+
 }

@@ -18,6 +18,16 @@ public class MainView {
     /*
      * Instance variable
      */
+    private JButton newRSS;
+    private JButton syncButton;
+    private JButton aboutButton;
+    private JButton openPodcastButton;
+    private JButton settingsButton;
+
+    private JFrame mainFrame;
+
+    private JPanel mainPanel;
+
     private ArrayList<JCheckBoxMenuItem> podcastMenu;
     private ArrayList<Podcast> podcasts;
 
@@ -46,7 +56,7 @@ public class MainView {
     }
 
     private void mainWindow () {
-        JFrame mainFrame = new JFrame();
+        mainFrame = new JFrame();
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
         mainFrame.setSize(500, 500); // default values that may be changed
@@ -58,21 +68,24 @@ public class MainView {
     }
 
     private JPanel mainPanel () {
-        JPanel mainPanel = new JPanel();
+        mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
 
         // toolPanel set-up
         JPanel toolPanel = new JPanel();
         mainPanel.add(toolPanel, BorderLayout.NORTH); // add panel to the main panel
 
-        JButton newRSS = new JButton("Add Podcast");
+        newRSS = new JButton("Add Podcast");
         toolPanel.add(newRSS); // add to tool panel
+        newRSS.addActionListener(this::actionPerformed);
 
-        JButton syncButton = new JButton("Sync");
+        syncButton = new JButton("Sync");
         toolPanel.add(syncButton); // add to tool panel
+        syncButton.addActionListener(this::actionPerformed);
 
-        JButton aboutButton = new JButton("About");
+        aboutButton = new JButton("About");
         toolPanel.add(aboutButton);
+        aboutButton.addActionListener(this::actionPerformed);
 
         // PodcastList panel
         JPanel podcastListPanel = new JPanel();
@@ -88,10 +101,24 @@ public class MainView {
         JPanel bottomPanel = new JPanel();
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
 
-        JButton openPodcastButton = new JButton("Open Podcast");
+        openPodcastButton = new JButton("Open Podcast");
         bottomPanel.add(openPodcastButton);
+        openPodcastButton.addActionListener(this::actionPerformed);
+
+        settingsButton = new JButton("Settings");
+        bottomPanel.add(settingsButton);
+        settingsButton.addActionListener(this::actionPerformed);
 
         return mainPanel;
+    }
+
+    public void actionPerformed (ActionEvent e) {
+        String action = e.getActionCommand();
+        if (action == "About") {
+            JOptionPane.showMessageDialog(null, About.getInformation());
+        } else if (action == "Settings") {
+            SettingsView settingsView = new SettingsView();
+        }
     }
 
 }

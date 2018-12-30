@@ -121,7 +121,7 @@ public class MainView {
             JOptionPane.showMessageDialog(null, About.getInformation());
         } else if (action == "Settings") {
             SettingsView settingsView = new SettingsView(config);
-            JOptionPane.showMessageDialog(null, config.getSaveLocation());
+            config.writeConfiguration();
         } else if (action.equals("Add Podcast")) {
             AddPodcastView addPodCast = new AddPodcastView();
         }

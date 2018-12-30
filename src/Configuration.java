@@ -21,6 +21,7 @@ public class Configuration {
 
     public boolean loadPodcastFilePath (String pString) {
         podcastFilePath = pString;
+        return true;
     }
 
     public String getPodcastFilePath () {

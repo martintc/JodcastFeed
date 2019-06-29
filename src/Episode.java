@@ -64,6 +64,7 @@ public class Episode {
 		panel.add(this.pubDateLabel);
 		panel.add(this.descriptionLabel);
 		panel.add(downloadButton);
+		downloadButton.addActionListener(ButtonActions.downloadFromLink(this.link));
 		return this.panel;
 	}
 		
